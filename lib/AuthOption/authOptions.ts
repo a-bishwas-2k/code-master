@@ -69,7 +69,7 @@ export const authOption:NextAuthOptions={
     },
 
     pages: {
-        signIn: "/",
+        signIn: "/auth/login",
         newUser: "/",
         error: "/auth/error",
       },
