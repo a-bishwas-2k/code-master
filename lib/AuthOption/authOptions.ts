@@ -21,7 +21,7 @@ export const authOption:NextAuthOptions={
         async jwt({ token, user, session, account }) {
             if(account){
 
-                const checkEmail = await fetch("http://localhost:8000/users/checkEmail", {
+                const checkEmail = await fetch("https://codemaster.rajmohandas.com.np/users/checkEmail", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

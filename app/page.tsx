@@ -19,7 +19,7 @@ export default async function Home() {
   console.log(session);
 
 
-  const getProblem = await fetch(`http://localhost:8000/app/getProblems?userId=${session?.id}`, {
+  const getProblem = await fetch(`https://codemaster.rajmohandas.com.np/app/getProblems?userId=${session?.id}`, {
     method: "GET",
     headers: {
         "Content-Type": "application/json"

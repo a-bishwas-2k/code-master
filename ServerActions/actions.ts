@@ -5,7 +5,7 @@ import { revalidateTag } from "next/cache";
 
 export const addQuestion = async(question:any)=>{
     try {
-        const res = await fetch("http://localhost:8000/app/createProblem",{
+        const res = await fetch("https://codemaster.rajmohandas.com.np/app/createProblem",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -33,7 +33,7 @@ export const runCode = async(data:{
     problemId:string;
 })=>{
     try {
-        const res = await fetch("http://localhost:8000/app/runCode",{
+        const res = await fetch("https://codemaster.rajmohandas.com.np/app/runCode",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -63,7 +63,7 @@ export const submitCode = async(data:{
     userId:string
 })=>{
     try {
-        const res = await fetch("http://localhost:8000/app/submitCode",{
+        const res = await fetch("https://codemaster.rajmohandas.com.np/app/submitCode",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -107,7 +107,7 @@ export const submitCode = async(data:{
 
 export const previewProblem = async(problemId:string)=>{
     try {
-        const res = await fetch(`http://localhost:8000/app/getProblemsPreview?problemId=${problemId}`,{
+        const res = await fetch(`https://codemaster.rajmohandas.com.np/app/getProblemsPreview?problemId=${problemId}`,{
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

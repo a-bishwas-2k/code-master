@@ -17,7 +17,7 @@ const session  = await getServerSession(authOption);
 if(!session) return redirect("/auth/login");
     if(!searchParams.problemId) return null;
 
-    const getProblem = await fetch(`http://localhost:8000/app/getProblemById?problemId=${searchParams.problemId}`, {
+    const getProblem = await fetch(`https://codemaster.rajmohandas.com.np/app/getProblemById?problemId=${searchParams.problemId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
