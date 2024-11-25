@@ -8,14 +8,14 @@ import React from 'react'
 
 const page = async ({
     searchParams
-}:{
-    searchParams:{problemId:string}
+}: {
+    searchParams: { problemId: string }
 }) => {
 
 
-const session  = await getServerSession(authOption);
-if(!session) return redirect("/auth/login");
-    if(!searchParams.problemId) return null;
+    const session = await getServerSession(authOption);
+    if (!session) return redirect("/auth/login");
+    if (!searchParams.problemId) return null;
 
     const getProblem = await fetch(`${process.env.SERVER_URL}/app/getProblemById?problemId=${searchParams.problemId}`, {
         method: "GET",
@@ -34,24 +34,17 @@ if(!session) return redirect("/auth/login");
 
     console.log(resp);
 
-   
+
 
 
     return (
 
-        
+
         <div>
 
-
-
-
-
-
-
-
-        {
-            resp &&     <Workspace language={resp.language}  title={resp.title} description={resp.description} testCases={resp.testCases} problemId={resp.id} executionFunction={resp.executionFunction} functionSignature={resp.functionSignature} />
-        }
+            {
+                resp && <Workspace language={resp.language} title={resp.title} description={resp.description} testCases={resp.testCases} problemId={resp.id} executionFunction={resp.executionFunction} functionSignature={resp.functionSignature} />
+            }
 
         </div>
     )

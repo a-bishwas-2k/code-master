@@ -14,7 +14,7 @@ function LoginUser() {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Code2 size={40} className="text-indigo-500" />
-            <h1 className="text-3xl font-bold text-white">CodeMaster</h1>
+            <h1 className="text-3xl font-bold text-white">KIIT-LAB</h1>
           </div>
           <p className="text-gray-400">Your journey to coding excellence begins here</p>
         </div>
@@ -52,7 +52,7 @@ function LoginUser() {
       
 
           {/* Footer Stats */}
-          <div className="mt-8 grid grid-cols-3 gap-4 py-4 border-t border-gray-700">
+          {/* <div className="mt-8 grid grid-cols-3 gap-4 py-4 border-t border-gray-700">
             <div className="text-center">
               <p className="text-2xl font-bold text-indigo-500">500K+</p>
               <p className="text-sm text-gray-400">Developers</p>
@@ -65,15 +65,15 @@ function LoginUser() {
               <p className="text-2xl font-bold text-indigo-500">50+</p>
               <p className="text-sm text-gray-400">Languages</p>
             </div>
-          </div>
+          </div> */}
 
           {/* Terms */}
-          <p className="text-center text-sm text-gray-500 mt-6">
+          {/* <p className="text-center text-sm text-gray-500 mt-6">
             By continuing, you agree to our{' '}
             <a href="#" className="text-indigo-400 hover:text-indigo-300">Terms of Service</a>
             {' '}and{' '}
             <a href="#" className="text-indigo-400 hover:text-indigo-300">Privacy Policy</a>
-          </p>
+          </p> */}
         </div>
 
         {/* Features */}

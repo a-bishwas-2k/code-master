@@ -3,14 +3,9 @@ import React, { useState } from 'react';
 import { Search, Plus, Filter, Sidebar } from 'lucide-react';
 import AddProblemModal from '@/components/Problems/AddProblemModel';
 import ProblemPreview from './ProblemView';
-
-
-// id: '66cde8043372ec95a5bd94d0',
-// title: 'Add Two Numbers',
-// description: 'Adding two number and print',
-// difficulty: 'Easy',
-// category: 'Array',
-// status: 'Active',
+import { toast } from 'react-toastify';
+import { deleteProblem } from '@/ServerActions/actions';
+import { updateToast } from '@/utils/tostify';
 
 function ProblemsPage({data}:{
     data:{
@@ -25,48 +20,21 @@ function ProblemsPage({data}:{
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [currentProblemId,setCurrentProblemId] = useState<string|null>(null);
-//   const [problems, setProblems] = useState([
-//     {
-//       title: 'Two Sum',
-//       difficulty: 'Easy',
-//       category: 'Arrays',
-//       successRate: '75%',
-//       status: 'Active',
-//     },
-//     {
-//       title: 'Valid Parentheses',
-//       difficulty: 'Medium',
-//       category: 'Strings',
-//       successRate: '62%',
-//       status: 'Active',
-//     },
-//     {
-//       title: 'Merge k Sorted Lists',
-//       difficulty: 'Hard',
-//       category: 'Linked Lists',
-//       successRate: '45%',
-//       status: 'Draft',
-//     },
-//     {
-//       title: 'Binary Tree Level Order',
-//       difficulty: 'Medium',
-//       category: 'Trees',
-//       successRate: '58%',
-//       status: 'Active',
-//     },
-//   ]);
 
-//   const handleAddProblem = (newProblem: any) => {
-//     setProblems([
-//       ...problems,
-//       {
-//         ...newProblem,
-//         successRate: '0%',
-//         status: 'Draft',
-//       },
-//     ]);
-//   };
+  const onDeleteProblem = async(problemId:string)=>{
 
+    if(!problemId) return toast.error("Invalid Problem Id");
+    const toastId = toast("Deleting Problem..");
+
+    const status = await deleteProblem(problemId);
+    if(status === 200){
+     return updateToast(toastId,"Problem Deleted Successfully","success");
+    }
+
+    return updateToast(toastId,"Failed to delete problem","error");
+
+  
+  }
   return (
 <div className='w-full h-full '>
       
@@ -154,7 +122,7 @@ function ProblemsPage({data}:{
                       </td>
 
                        <td className="py-3 px-4">
-                        <button onClick={()=>setCurrentProblemId(problem.id)} className="text-gray-400">View</button>
+                        <button onClick={()=>onDeleteProblem(problem.id)} className="text-gray-200 bg-red-800 p-1 rounded-[5px]">Delete</button>
                       </td>
                     </tr>
                   ))}

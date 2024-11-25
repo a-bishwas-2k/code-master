@@ -125,3 +125,24 @@ export const previewProblem = async(problemId:string)=>{
         return null;
     }
 }
+
+
+export const deleteProblem = async(problemId:string)=>{
+    try {
+        const res = await fetch(`${process.env.SERVER_URL}/app/deleteProblem?problemId=${problemId}`,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        if(res.ok){
+            revalidateTag("getProblems");
+        }
+
+        return res.status;
+    } catch (error) {
+        console.log(error);
+        return 500;
+    }
+}
