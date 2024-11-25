@@ -3,7 +3,7 @@ import React from 'react'
 
 const page = async() => {
 
-    const getProblem = await fetch("https://codemaster.rajmohandas.com.np/app/getProblems", {
+    const getProblem = await fetch(`${process.env.SERVER_URL}/app/getProblems`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"

@@ -17,7 +17,7 @@ const session  = await getServerSession(authOption);
 if(!session) return redirect("/auth/login");
     if(!searchParams.problemId) return null;
 
-    const getProblem = await fetch(`https://codemaster.rajmohandas.com.np/app/getProblemById?problemId=${searchParams.problemId}`, {
+    const getProblem = await fetch(`${process.env.SERVER_URL}/app/getProblemById?problemId=${searchParams.problemId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -50,7 +50,7 @@ if(!session) return redirect("/auth/login");
 
 
         {
-            resp &&     <Workspace  title={resp.title} description={resp.description} testCases={resp.testCases} problemId={resp.id} executionFunction={resp.executionFunction} functionSignature={resp.functionSignature} />
+            resp &&     <Workspace language={resp.language}  title={resp.title} description={resp.description} testCases={resp.testCases} problemId={resp.id} executionFunction={resp.executionFunction} functionSignature={resp.functionSignature} />
         }
 
         </div>

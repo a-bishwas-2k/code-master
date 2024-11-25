@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Split from 'react-split';
 import CodeEditor from './CodeEditor/CodeEditor';
 import Footer from './Footer/Footer';
-import { getStatusMapToMessage, mapBoilerplateCodeToLanguage } from '@/utils/helper';
+import { getStatusMapToMessage, languageMapToCode, mapBoilerplateCodeToLanguage } from '@/utils/helper';
 import { runCode, submitCode } from '@/ServerActions/actions';
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react';
@@ -12,7 +12,7 @@ import { loadToast, updateToast } from '@/utils/tostify';
 
 
 
-const Playground = ({ executionFunction, functionSignature, problemId, testCases, description }: {
+const Playground = ({ executionFunction, functionSignature, problemId, testCases, description,language }: {
     executionFunction: string
     problemId: string;
 
@@ -25,6 +25,7 @@ const Playground = ({ executionFunction, functionSignature, problemId, testCases
         output: undefined | string
 
     }[]
+    language:string
 }) => {
 
     const [TestCase, setTestCase] = useState<{
@@ -34,7 +35,7 @@ const Playground = ({ executionFunction, functionSignature, problemId, testCases
         output: undefined | string
     }[]>([]);
 
-    const [code, setCode] = useState<string>(`${mapBoilerplateCodeToLanguage("c", functionSignature, executionFunction)}`);
+    const [code, setCode] = useState<string>(`${mapBoilerplateCodeToLanguage(language, functionSignature, executionFunction)}`);
 
     const [running, setRunning] = useState(false);
 
@@ -61,7 +62,7 @@ const Playground = ({ executionFunction, functionSignature, problemId, testCases
 
         const res = await runCode({
             code: code,
-            languageCode: "75",
+            languageCode: languageMapToCode(language).toString(),
             problemId: problemId
         })
 
@@ -70,7 +71,7 @@ const Playground = ({ executionFunction, functionSignature, problemId, testCases
         // const newTestCase = []
         console.log("tcase", tCases);
 
-        updateToast(toastId, getStatusMapToMessage(res.status.id), res.status.id == 3 ? "success" : res.status.id == 4 ? "error" : "info");
+        updateToast(toastId, getStatusMapToMessage(res.status.id), res.status.id == 3 ? "success" :"error");
 
         if (tCases?.length > 0) {
             const newT = testCases.map((t, i) => {
@@ -105,26 +106,27 @@ const Playground = ({ executionFunction, functionSignature, problemId, testCases
         if (!problemId) return alert("Please select a problem first");
         if (!session.data?.id) return alert("Please login first");
         console.log("submitting code");
+        const toastId = loadToast("Submitting Code..");
 
         console.log(code);
 
         const res = await submitCode({
             code: code,
-            languageCode: "75",
+            languageCode: languageMapToCode(language).toString(),
             problemId: problemId,
             userId: session.data.id
         });
 
         if (res.status == 422) {
-            alert("Compilation Error");
+            // alert("Compilation Error");
+            updateToast(toastId, "Compilation Error", "error");
         } else if (res.status == 201) {
-
-            alert(res.data.status);
-
+            updateToast(toastId, " All Test Case Passed & Code Submitted", "success");
             router.push("/")
             return
         } else {
-            alert("Something went wrong");
+            // alert("Something went wrong");
+            updateToast(toastId, "Something went wrong", "error");
         }
 
 

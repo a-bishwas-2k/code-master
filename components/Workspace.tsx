@@ -14,11 +14,12 @@ import Split from 'react-split';
 import Playground from './Playground/Playground';
 import Description from './Description/Description';
 
-const Workspace = ({ executionFunction, functionSignature,problemId,testCases,description,title }: {
+const Workspace = ({ executionFunction, functionSignature,problemId,testCases,description,title,language }: {
     executionFunction:string,
     title:string;
     problemId: string;
     description: string;
+    language:string
     
     functionSignature: string,
     testCases: {
@@ -52,7 +53,7 @@ const Workspace = ({ executionFunction, functionSignature,problemId,testCases,de
 
   
 
-<Playground  executionFunction={executionFunction} functionSignature={functionSignature} problemId={problemId} testCases={testCases} description={description} />
+<Playground language={language}  executionFunction={executionFunction} functionSignature={functionSignature} problemId={problemId} testCases={testCases} description={description} />
 
         </Split>
     )

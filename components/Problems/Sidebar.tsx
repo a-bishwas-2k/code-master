@@ -16,7 +16,7 @@ const Sidebar = () => {
     <div className="w-64 bg-[#141313] border-r border-gray-200 px-4 py-6 ">
       <div className="flex items-center gap-2 px-2 mb-8">
         <Code2 className="h-8 w-8 text-blue-600" />
-        <span className="text-xl font-bold text-gray-800">CodeAdmin</span>
+        <span className="text-xl font-bold text-gray-200">KIIT-LAB</span>
       </div>
 
       <nav className="space-y-1">

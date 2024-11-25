@@ -54,10 +54,10 @@ const Footer = ({ testCases,message,running }: {
             </div>
 
 
-
+{/* 
             <div className='bg-[#1f1f1f] p-3'>
                 <h1 className='text-xl font-bold text-white'>{message.status}</h1>
-            </div>
+            </div> */}
 
             {/* input  */}
 

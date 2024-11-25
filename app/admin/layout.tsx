@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 
 
 export const metadata: Metadata = {
-  title:"Book",
+  title:"Admin Dashboard",
 };
 const AdminLayout = async ({ children }:{children: React.ReactNode;}) => {
     // const users = await getData()

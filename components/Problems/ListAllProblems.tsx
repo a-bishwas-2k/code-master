@@ -89,7 +89,7 @@ function ListAllProblems({data}:{data:Problem[]}) {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Award className="h-8 w-8 text-indigo-600" />
-              <h1 className="text-2xl font-bold text-gray-300">CodeMaster</h1>
+              <h1 className="text-2xl font-bold text-gray-300">KIIT-LAB</h1>
             </div>
             {
               session.data?.user?<div onClick={()=>signOut()} className="flex items-center space-x-4 cursor-pointer">
